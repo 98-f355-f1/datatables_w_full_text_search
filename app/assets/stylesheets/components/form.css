@@ -1,0 +1,27 @@
+form select {
+  border-radius: 5px;
+}
+
+form input[type="search"] {
+  border-radius: 5px;
+}
+
+form div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+form .clear {
+  position: absolute;
+  right: 0;
+  transform: translateX(-25%);
+}
+
+form .clear:hover + #tooltip {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  transform: translateY(-100%);
+}

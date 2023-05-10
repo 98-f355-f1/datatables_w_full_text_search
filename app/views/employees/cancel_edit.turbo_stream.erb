@@ -1,0 +1,6 @@
+<%= turbo_stream.replace @employee do %>
+  <%= render Employees::EmployeeTableRowComponent.new(employee: @employee) %>
+<% end %>
+<%= turbo_stream.prepend "notices" do %>
+  <%= render FlashComponent.new(flash_notice: "Editing of record ##{@employee.id} was successfully canceled.") %>
+<% end %>

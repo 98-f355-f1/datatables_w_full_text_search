@@ -1,0 +1,58 @@
+<div class="mycontainer">
+  <%= form_with(
+        url: "",
+        method: :get,
+        data: {
+          controller: "search-form",
+          search_form_target: "form",
+          search_form_pagy_outlet: ".pagy",
+          turbo_frame: "employees-table",
+          turbo_action: "advance"
+        },
+        class: "search-form"
+      ) do |form| %>
+    <span>Show</span>
+    <%= form.select(:count, options_for_select([10, 25, 50, 100], selected: params[:count]), {}, data: { action: "change->search-form#changeSelect" }) %>
+    <span>Search</span>
+    <div>
+      <%= form.search_field(
+            :query,
+            value: params[:query],
+            autocomplete: :off,
+            data: { search_form_target: "query", action: "input->search-form#submit" }) %>
+      <div class="clear" aria-describedby="tootip" data-action="click->search-form#clearSearch">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-red-ferrari font-lg w-6 h-6 cursor-pointer">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <div id="tooltip" role="tooltip">
+        Clear search
+        <span id="arrow"></span>
+      </div>
+    </div>
+    <%= form.check_box(
+          :match,
+          value: params[:match],
+          checked: (params[:match].nil? ? "" : "checked"),
+          style: "margin-left: 5px;",
+          include_hidden: false,
+          data: { search_form_target: "checked", search_form_match_value: (params[:match].nil? ? "0" : "1"), action: "click->search-form#checked" }) %>
+    <%= form.label "Match Exact", for: :match %>
+  <% end %>
+  <div class="rounded-lg px-3 py-3 bg-slate-50 drop-shadow-lg">
+    <div class= "employees-table-width">
+      <div class="flex items-center justify-between px-1 py-2">
+        <h1 class="font-medium text-2xl"><%= employees.name.pluralize.capitalize %></h1>
+        <%= link_to "New User", new_employee_path(extract_search_and_or_sort_params(params)), class: "font-normal px-3 py-1 rounded-md text-cadetblue-50 bg-cadetblue-600", data: { turbo_method: :post } %>
+        <%# <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="m-auto w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+        </svg> %>
+        <%# end %>
+      </div>
+    </div>
+    <%= turbo_frame_tag "employees-table", data: { controller: "pagy" }, class: "employees-table-width pagy "  do %>
+      <%= render DataTableComponent.new(model_data: employees, width: "100%") %>
+      <%= render PagyComponent.new(pagy: pagy) %>
+    <% end %>
+  </div>
+</div>

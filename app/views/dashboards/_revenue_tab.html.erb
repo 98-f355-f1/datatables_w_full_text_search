@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "tab_data" do %>
+  <%= turbo_stream_from "revenue" %>
+  <div id="revenue">
+    <%= number_to_currency(data) %>
+  </div>
+<% end %>

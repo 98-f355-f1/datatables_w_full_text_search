@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "notices" do %>
+  <%= render FlashComponent.new(flash_notice: "Employee record ##{@employee.id} was successfully deleted.") %>
+<% end %>
+<turbo-stream action="remove" target=<%= dom_id(@employee) %> data-controller="pagy" data-pagy-total-value=<%= @count %> data-action="pagy#decrementTotal"></turbo-stream>

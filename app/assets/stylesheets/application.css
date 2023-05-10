@@ -1,0 +1,102 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative pa.table-header-group.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
+/* @import url("https://cdn.simplecss.org/simple.min.css"); */
+@import "./components/*.css";
+
+body {
+  background-color: rgb(216, 235, 241);
+  box-sizing: border-box;
+  padding: 0;
+  min-width: 100vw;
+}
+
+.turbo-progress-bar {
+  height: .5rem;
+  background-color: cadetblue;
+}
+
+.header {
+  min-height: 5rem;
+  position: relative;
+  width: 100%;
+}
+
+.myprose {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100% !important;
+  position: relative;
+}
+
+.search-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+main h1 {
+  text-align: center;
+}
+
+.mark {
+  background-color: yellow;
+  text-decoration: none !important;
+}
+
+.mycontainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.text-copper-rose {
+  color: #a1625f;
+}
+
+.text-red-f5 {
+  color: #f00000;
+}
+
+.text-red-ferrari {
+  color: #ff2800;
+}
+
+.text-yellow-pencil {
+  color: #ffaa1d;
+}
+
+.text-blue-bsod {
+  color: #0336c0;
+}
+
+.bg-cadetblue-100 {
+  background-color: cadetblue;
+}
+
+.bg-cadetblue-600 {
+  background-color: #538a8c !important;
+}
+
+.text-cadetblue-50 {
+  color: #ebf3f3;
+}

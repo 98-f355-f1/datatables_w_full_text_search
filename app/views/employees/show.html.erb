@@ -1,0 +1,6 @@
+<div class="mycontainer">
+  <%= render(DataTableComponent.new(model_data: Employee.where(id: @employee.id), width: 1200)) %>
+  <div>
+    <%= link_to "Back to employees", employees_path(extract_search_and_or_sort_params(params)) %>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<%= render Employees::EmployeeTableRowEditFormComponent.new(employee: @employee) %>
+<%= turbo_stream.prepend "notices" do %>
+  <%= render FlashComponent.new(flash_notice: "Editing record ##{@employee.id}.YEEHAA MUTHFACKA!!!") %>
+<% end %>

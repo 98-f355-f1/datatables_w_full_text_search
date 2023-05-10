@@ -1,0 +1,15 @@
+<div class="w-full flex flex-col gap-4 items-center justify-center">
+  <h1>Demo Sales Admin Dashboard - showing how turbo stream channels work</h1>
+  <div class="flex items-center justify-center gap-4 text-center">
+    <%= button_to "Real-Time Revenue", revenue_dashboard_path, method: :get, data: { turbo_frame: "tab_data" }, class: "font-normal px-3 py-1 rounded-md text-cadetblue-50 bg-cadetblue-600" %>
+    <%= button_to "Real-Time Orders", orders_dashboard_path, method: :get, data: { turbo_frame: "tab_data" }, class: "font-normal px-3 py-1 rounded-md text-cadetblue-50 bg-cadetblue-600" %>
+  </div>
+  <div class="text-center">
+    <%= turbo_frame_tag "tab_data" do %>
+      <%= turbo_stream_from "revenue" %>
+      <div id="data">
+        <%= render partial: "metrics/financial_data", locals: { data: @revenue } %>
+      </div>
+    <% end %>
+  </div>
+</div>

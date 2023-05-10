@@ -1,0 +1,15 @@
+<div class="table-header-group" id="table-header">
+  <div class="table-row">
+    <% table_header_columns.each_pair do |field, name| %>
+      <div class="table-cell <%= css_classes %> <%= field %>">
+        <%= sort_link_to name, field, data: { turbo_action: turbo_action } %>
+        <span class="sort"><i class="<%= (sort_indicator if stringify(params[:sort]) == name.downcase) %>"></i></span>
+      </div>
+    <% end %>
+    <% if crud_actions %>
+      <div class="table-cell <%= css_classes %> new-employee actions">
+        <div><span class="font-medium">Actions</span></div>
+      </div>
+    <% end %>
+  </div>
+</div>

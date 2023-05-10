@@ -1,0 +1,7 @@
+<%= turbo_stream.replace @employee do %>
+  <%= render Employees::EmployeeTableRowEditFormComponent.new(employee: @employee) %>
+<% end %>
+<%= turbo_stream.prepend "notices" do %>
+  <% flash_message = (@employee.errors.any? ? "Editing record ##{@employee.id} failed." : "Editing record ##{@employee.id}.") %>
+  <%= render FlashComponent.new(flash_notice: flash_message) %>
+<% end %>

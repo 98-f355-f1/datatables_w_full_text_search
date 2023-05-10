@@ -1,0 +1,23 @@
+<%= form_with model: @employee, class: "table-row", id: dom_id(@employee), data: { controller: "employee-form", employee_form_target: "form" } do |form| %>
+  <div class="table-cell relative" data-label="name">
+    <%= form.text_field :name %>
+  </div>
+  <div class="table-cell relative" data-label="position">
+    <%= form.text_field :position %>
+  </div>
+  <div class="table-cell relative" data-label="office">
+    <%= form.text_field :office %>
+  </div>
+  <div class="table-cell relative text-center" data-label="age">
+    <%= form.number_field :age %>
+  </div>
+  <div class="table-cell relative text-center" data-label="start date">
+    <%= form.date_field :start_date %>
+  </div>
+  <div class="table-cell new-employee">
+    <div class="flex justify-around items-center">
+      <%= form.submit "SAVE", class: "underline font-medium" %>
+      <%= render Employees::EmployeeDeleteComponent.new(employee: @employee) %>
+    </div>
+  </div>
+<% end %>

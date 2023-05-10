@@ -1,0 +1,9 @@
+<%= turbo_stream.prepend "notices" do %>
+  <%= render FlashComponent.new(flash_notice: "Employee record ##{@employee.id} was successfully created.") %>
+<% end %>
+<%= turbo_stream.remove "new_employee" %>
+<turbo-stream action="prepend" target="employees" data-controller="pagy" data-pagy-total-value=<%= @count %> data-action="pagy#incrementTotal">
+  <template>
+    <%= render Employees::EmployeeTableRowComponent.new(employee: @employee) %>
+  </template>
+</turbo-stream>

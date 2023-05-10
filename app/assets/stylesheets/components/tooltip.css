@@ -1,0 +1,34 @@
+#tooltip {
+  background: #538a8c;
+  color: #ebf3f3;;
+  font-weight: normal;
+  padding: .5rem .75rem;
+  font-size: .85rem;
+  border-radius: .25rem;
+  display: none;
+}
+
+#arrow,
+#arrow::before {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid cadetblue;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: "";
+}
+
+#tooltip>#arrow {
+  right: 9px;
+  bottom: -8px;
+}

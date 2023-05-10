@@ -1,0 +1,30 @@
+.table-row[id=dom_id(employee)]
+  .table-cell.pr-1
+    - if params[:query]&.include?("name")
+      = link_to highlight(employee.name, params[:query]), employee_path(employee, query: params[:query], match: params[:match], count: params[:count]), class: "mark"
+    - else
+      = employee.name
+
+  .table-cell.pr-1
+    - if params[:query]&.include?("position")
+      = link_to highlight(employee.position, params[:query]), employee_path(employee, query: params[:query], match: params[:match], count: params[:count]), class: "mark"
+    - else
+      = employee.position
+
+  .table-cell.pr-1
+    - if params[:query]&.include?("office")
+      = link_to highlight(employee.office, params[:query]), employee_path(employee, query: params[:query], match: params[:match], count: params[:count]), class: "mark"
+    - else
+      = employee.office
+
+  .table-cell.pr-1
+    - if params[:query]&.include?("age")
+      = link_to highlight(sanitize(employee.age.to_s), params[:query]), employee_path(employee, query: params[:query], match: params[:match], count: params[:count]), class: "mark"
+    - else
+      = employee.age
+
+  .table-cell.pr-1
+    - if params[:query]&.include?("start_date")
+      = link_to highlight(employee.start_date, params[:query]), employee_path(employee, query: params[:query], match: params[:match], count: params[:count]), class: "mark"
+    - else
+      = employee.start_date

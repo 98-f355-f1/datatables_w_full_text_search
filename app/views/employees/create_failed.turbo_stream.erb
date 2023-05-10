@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "notices" do %>
+  <%= render FlashComponent.new(flash_notice: "Failed to create new record. Fix errors #{@employee.errors.full_messages}, and resubmit employee.") %>
+<% end %>
+<%= turbo_stream.replace "new_employee" do %>
+  <%= render Employees::EmployeeTableRowEditFormComponent.new(employee: @employee) %>
+<% end %>

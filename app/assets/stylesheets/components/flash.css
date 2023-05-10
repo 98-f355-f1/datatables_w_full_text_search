@@ -1,0 +1,8 @@
+.flash-notices {
+  position: absolute;
+  z-index: 99;
+}
+
+.flash-notice {
+  position: relative;
+}

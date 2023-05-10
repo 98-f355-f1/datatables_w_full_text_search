@@ -1,0 +1,7 @@
+<div style="--table-width:<%= table_width %>px;"
+     class="<%= model_data&.name&.pluralize&.downcase %>-table table border-collapse table-fixed text-sm border-spacing-px border-separate">
+  <%= render DataTableHeaderComponent.new(css_classes: "relative text-center", crud_actions: true) %>
+  <div class="table-row-group" id="<%= model_data&.name&.pluralize&.downcase %>" data-controller="employee-form">
+    <%= render Employees::EmployeeTableRowComponent.with_collection(model_data) %>
+  </div>
+</div>

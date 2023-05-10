@@ -1,0 +1,9 @@
+<div class="flex justify-center align-center">
+  <div class="flex justify-start items-center grow">
+    <%#= pagy_info(pagy, pagy_id: "pagy-info").html_safe %>
+    <div>Total records: <span id="total-count" class="font-medium"><%= pagy.count %></span></div>
+  </div>
+  <div class="flex justify-end">
+    <%= pagy_nav(pagy, pagy_id: "pagy-nav", link_extra: 'data-turbo-action="advance"').html_safe %>
+  </div>
+</div>

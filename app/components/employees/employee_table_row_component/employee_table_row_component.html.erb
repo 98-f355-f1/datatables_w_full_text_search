@@ -1,0 +1,51 @@
+<%= content_tag :div, class: "table-row", id: dom_id(employee) do %>
+  <div class="table-cell align-middle" data-label="name">
+    <% if name_in_search? %>
+      <%= link_to highlight(employee.name, params[:query]), employee_path(employee, extract_search_and_or_sort_params(params)), class: "mark" %>
+    <% else %>
+      <%= employee.name %>
+    <% end %>
+  </div>
+  <div class="table-cell align-middle"
+       data-label="<%= :position %>"
+       data-controller="employee-form"
+       data-employee-form-label-value="position"
+       data-employee-form-css-class="active"
+       data-employee-form-url-value="<%= employee_path(employee) %>"
+       data-action="click->employee-form#toggle">
+    <% if position_in_search? %>
+      <%= link_to highlight(employee.position, params[:query]), employee_path(employee, extract_search_and_or_sort_params(params)), class: "mark" %>
+    <% else %>
+      <%= employee.position %>
+    <% end %>
+  </div>
+  <div class="table-cell align-middle" data-label="office">
+    <% if office_in_search? %>
+      <%= link_to highlight(employee.office, params[:query]), employee_path(employee, extract_search_and_or_sort_params(params)), class: "mark" %>
+    <% else %>
+      <%= employee.office %>
+    <% end %>
+  </div>
+  <div class="table-cell text-center align-middle" data-label="age">
+    <% if age_in_search? %>
+      <%= link_to highlight(sanitize(employee.age.to_s), params[:query]), employee_path(employee, extract_search_and_or_sort_params(params)), class: "mark" %>
+    <% else %>
+      <%= employee.age %>
+    <% end %>
+  </div>
+  <div class="table-cell text-center align-middle" data-label="start date">
+    <% if start_date_in_search? %>
+      <%= link_to highlight(employee.start_date.to_s, params[:query]), employee_path(employee, extract_search_and_or_sort_params(params)), class: "mark" %>
+    <% else %>
+      <%= employee.start_date %>
+    <% end %>
+  </div>
+  <%= render Employees::EmployeeTableRowFormActionsComponent.new do %>
+    <%= link_to edit_employee_path(employee, extract_search_and_or_sort_params(params)), class: "font-medium", data: { turbo_method: :post } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-yellow-pencil w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+      </svg>
+    <% end %>
+    <%= render Employees::EmployeeDeleteComponent.new(employee: employee) %>
+  <% end %>
+<% end %>

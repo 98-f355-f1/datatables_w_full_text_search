@@ -1,0 +1,43 @@
+<%= form_with model: employee, class: "table-row", id: (employee.id.present? ? dom_id(employee) : "new_employee") do |form| %>
+  <div class="table-cell relative" data-label="name">
+    <%= form.text_field :name %>
+    <%# HERE TO CREATE FORM ERROR COMPONENT %>
+    <%= inline_error_for(:name, employee) %>
+  </div>
+  <div class="table-cell relative" data-label="position">
+    <%= form.text_field :position %>
+    <%= inline_error_for(:position, employee) %>
+  </div>
+  <div class="table-cell relative" data-label="office">
+    <%= form.text_field :office %>
+    <%= inline_error_for(:office, employee) %>
+  </div>
+  <div class="table-cell relative text-center" data-label="age">
+    <%= form.number_field :age %>
+    <%= inline_error_for(:age, employee) %>
+  </div>
+  <div class="table-cell relative text-center" data-label="start date">
+    <%= form.date_field :start_date %>
+    <%= inline_error_for(:start_date, employee) %>
+  </div>
+  <%= render DataTableRowFormActionsComponent.new do %>
+    <%= button_tag(type: "submit") do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-blue-bsod m-auto w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
+      </svg>
+    <% end %>
+    <% if employee.new_record? %>
+      <%= link_to employees_path(extract_search_and_or_sort_params(params)), data: { turbo_frame: "_top" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-red-ferrari w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      <% end %>
+    <% else %>
+      <%= link_to cancel_edit_employee_path(employee, extract_search_and_or_sort_params(params)), data: { turbo_method: :patch } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-red-ferrari w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
